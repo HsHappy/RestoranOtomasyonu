@@ -1,0 +1,21 @@
+﻿@model RestoranOtomasyonu.Models.Category
+@{
+    ViewBag.Title = "Kategori Güncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kategori Güncelle</h2>
+<br />
+
+@using (Html.BeginForm("Update", "Category", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(m => m.CategoryId)
+
+        <label>Kategori Adı</label>
+        @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control" })
+    </div>
+    <br />
+
+    <button class="btn btn-success">Değişiklikleri Kaydet</button>
+}

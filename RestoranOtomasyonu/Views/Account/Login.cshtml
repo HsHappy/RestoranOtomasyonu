@@ -1,0 +1,59 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sisteme Giriş Yap</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #eee;
+            padding-top: 50px;
+        }
+
+        .login-panel {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="login-panel">
+            <h3 class="text-center">Restoran Giriş</h3>
+            <hr />
+
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                if (ViewBag.Mesaj != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.Mesaj</div>
+                }
+
+                <div class="form-group">
+                    <label>Kullanıcı Adı</label>
+                    <input type="text" name="Username" class="form-control" required placeholder="Kullanıcı Adı" />
+                </div>
+
+                <div class="form-group">
+                    <label>Şifre</label>
+                    <input type="password" name="Password" class="form-control" required placeholder="******" />
+                </div>
+
+                <br />
+                <button type="submit" class="btn btn-primary btn-block btn-lg">GİRİŞ YAP</button>
+            }
+        </div>
+    </div>
+
+</body>
+</html>

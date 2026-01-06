@@ -1,0 +1,29 @@
+﻿@model RestoranOtomasyonu.Models.Table
+@{
+    ViewBag.Title = "Masa Güncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Masa Güncelle</h2>
+<br />
+
+@using (Html.BeginForm("Update", "Table", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.TableId)
+
+    <div class="form-group">
+        <label>Masa Numarası</label>
+        @Html.TextBoxFor(m => m.TableNumber, new { @class = "form-control" })
+    </div> 
+    <br />
+
+    <div class="form-group">
+        <label>Durum (İşaretli = DOLU)</label>
+        <br />
+        @Html.CheckBoxFor(m => m.IsOccupied)
+        <span>Masa Dolu Mu?</span>
+    </div>
+    <br />
+
+    <button class="btn btn-success">Değişiklikleri Kaydet</button>
+}

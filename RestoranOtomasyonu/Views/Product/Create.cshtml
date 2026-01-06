@@ -1,0 +1,37 @@
+﻿@model RestoranOtomasyonu.Models.Product
+@{
+    ViewBag.Title = "Yeni Ürün Ekle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Yeni Ürün Ekle</h2>
+<br />
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Ürün Adı</label>
+        @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Kategorisi</label>
+        @Html.DropDownListFor(m => m.CategoryId, (List<SelectListItem>)ViewBag.vlc, "Bir Kategori Seçin", new { @class = "form-control" })
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Fiyatı</label>
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label>Resim Yolu(Sonraki İş)</label>
+        @Html.TextBoxFor(m => m.ImagePath, new { @class = "form-control" })
+    </div>
+    <br />
+
+    <button class="btn btn-primary">Ürünü Kaydet</button>
+}

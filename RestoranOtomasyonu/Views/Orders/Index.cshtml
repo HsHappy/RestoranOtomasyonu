@@ -1,0 +1,36 @@
+﻿@model List<RestoranOtomasyonu.Models.Table>
+@{
+    ViewBag.Title = "Masa Seçimi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Masa Seçimi</h2>
+<br />
+
+<div class="row">
+    @foreach (var item in Model)
+            {
+                // col-md-3: Yan yana 4 tane sığdır demektir (12 / 3 = 4)
+                <div class="col-md-3" style="margin-bottom: 20px;">
+                    <a href="/Orders/TableDetails/@item.TableId" style="text-decoration:none">
+                        
+                        <div class="@(item.IsOccupied ? "alert alert-danger" : "alert alert-success") text-center" style="height: 150px; padding-top: 50px">
+
+                            <h4>@item.TableNumber</h4>
+
+                            <br />
+
+                            @if (item.IsOccupied)
+                            {
+                                <span>🔴 DOLU</span>
+                            }
+                            else
+                            {
+                                <span>🟢 BOŞ</span>
+                            }
+                        </div>
+                    </a>
+
+                </div>
+            }
+</div>

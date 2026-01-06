@@ -1,0 +1,46 @@
+﻿@model List<RestoranOtomasyonu.Models.Table>
+@{
+    ViewBag.Title = "Masa Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Masa Listesi</h2>
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Masa Numarası</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TableId</td>
+                <td>@item.TableNumber</td>
+                <td>
+                    @if (item.IsOccupied == true)
+                    {
+                        //Masa Dolu: Kırmızı
+                        <b class="text-danger">DOLU</b>
+                    }
+                    else
+                    {
+                        //Masa Boş: YEŞİL
+                        <b class="text-bg-success">BOŞ</b>
+                    }
+                </td>
+                <td>
+                    <a href="/Table/Delete/@item.TableId" class="btn btn-danger btn-sm">Sil</a>
+                    <a href="/Table/Update/@item.TableId" class="btn btn-warning btn-sm">Güncelle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Table/Create" class="btn btn-primary">Yeni Masa Tanımla</a>

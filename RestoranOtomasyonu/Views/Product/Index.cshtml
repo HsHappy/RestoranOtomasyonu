@@ -1,0 +1,59 @@
+﻿@model IEnumerable<RestoranOtomasyonu.Models.Product>
+@{
+    ViewBag.Title = "Ürün Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ürün Listesi</h2>
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ürün Adı</th>
+            <th>Kategori</th> <th>Fiyat</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+
+                <td>
+                    @if(item.Category != null)
+                     {
+                        @item.Category.CategoryName
+                    }
+                    else
+                    {
+                        <span class="text-danger">Kategori Yok</span>
+                    }
+                </td>
+
+                <td>@item.Price ₺</td>
+
+                <td>
+                    @if (item.IsActive)
+                    {
+                        <label class="label label-success">Aktif</label>
+                    }
+                    else
+                    {
+                        <label class="label label-default">Pasif</label>
+                    }
+                </td>
+
+                <td>
+                    <a href="/Product/Delete/@item.ProductId" class="btn btn-danger btn-sm">Sil</a>
+                    <a href="/Product/Update/@item.ProductId" class="btn btn-warning btn-sm">Güncelle</a>
+                </td>
+            </tr>
+            }
+    </tbody>
+</table>
+
+<a href="/Product/Create" class="btn btn-primary">Yeni Ürün Ekle</a>

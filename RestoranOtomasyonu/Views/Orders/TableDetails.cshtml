@@ -1,0 +1,101 @@
+﻿@model RestoranOtomasyonu.ViewModels.OrderViewModel
+    @{ 
+        ViewBag.Title = "Masa Detayı";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="text-center">Masa: @Model.CurrentTable.TableNumber <small>(@Model.CurrentTable.TableId)</small></h2>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-7">
+        <h3>Menü</h3>
+
+        @foreach (var cat in Model.Categories)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">@cat.CategoryName</h4>
+                    </div>
+                    <div class="panel-body">
+                        @foreach (var prod in cat.Products)
+                        {
+                            if (prod.IsActive)
+                            {
+                                <a href="/Orders/AddProduct?productId=@prod.ProductId&tableId=@Model.CurrentTable.TableId" class="btn btn-warning" style="margin:5px;">
+                                    <b>@prod.ProductName</b> <br />
+                                    <span class="badge">@prod.Price ₺</span>
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+    </div>
+
+    <div class="col-md-5">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Adisyon</h3>
+            </div>
+            <div class="panel-body">
+
+                @if (Model.CurrentOrder == null)
+                {
+                    <div class="alert alert-info">
+                        <p>Bu masada henüz açık sipariş yok.</p>
+                        <p>Soldaki menüden ürün ekleyebilirsiniz.</p>
+                    </div>
+                }
+                else
+                {
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Ürün</th>
+                                <th>Adet</th>
+                                <th>Fiyat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.CurrentOrder.OrderDetails != null)
+                            {
+                                foreach (var item in Model.CurrentOrder.OrderDetails)
+                                {
+                                    <tr>
+                                        <td>@item.Product.ProductName</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@(item.Quantity * item.Price) ₺</td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-right">Toplam: @Model.CurrentOrder.TotalAmount ₺</h3>
+                    <hr />
+
+                    <div class="text-center">
+
+                        <a href="/Orders/CloseOrder?tableId=@Model.CurrentTable.TableId" class="btn btn-success btn-lg btn-block">
+                            ✔ ÖDEME AL / KAPAT
+                        </a>
+                    </div>
+                }
+
+                <br />
+
+                <div class="text-center">
+                <a href="/Orders/Index" class="btn btn-default btn-block">
+                    ⬅ Masalara Dön
+                </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
