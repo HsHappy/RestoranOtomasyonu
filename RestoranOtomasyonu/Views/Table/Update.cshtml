@@ -14,6 +14,8 @@
     <div class="form-group">
         <label>Masa Numarası</label>
         @Html.TextBoxFor(m => m.TableNumber, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(m => m.TableNumber, "", new { @class = "text-danger" })
     </div> 
     <br />
 
@@ -25,5 +27,11 @@
     </div>
     <br />
 
-    <button class="btn btn-success">Değişiklikleri Kaydet</button>
+    <div class="form-group">
+        <button class="btn btn-success">Değişiklikleri Kaydet</button>
+
+        <a href="/Table/Index" class="btn btn-danger" style="margin-left: 10px;">
+            İptal
+        </a>
+    </div>
 }

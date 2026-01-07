@@ -11,7 +11,7 @@ namespace RestoranOtomasyonu.Models
         [Key] // Birincil anahtar
         public int CategoryId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Kategori adı boş bırakılamaz.")]
         [StringLength(50)]
         public string CategoryName { get; set; }
 

@@ -14,12 +14,12 @@
     <div class="form-group">
         <label>Ürün Adı</label>
         @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control" })
-    </div>  
+    </div>
     <br />
 
     <div class="form-group">
         <label>Kategorisi</label>
-        @Html.DropDownListFor(m => m.CategoryId, (List<SelectListItem>)ViewBag.vlc, new { @class = "form-control"})
+        @Html.DropDownListFor(m => m.CategoryId, (List<SelectListItem>)ViewBag.vlc, new { @class = "form-control" })
     </div>
     <br />
 
@@ -42,5 +42,12 @@
     </div>
     <br />
 
-    <button class="btn btn-success">Değişiklikleri Kaydet</button>
+    <div class="form-group">
+        <button class="btn btn-success">Değişiklikleri Kaydet</button>
+
+        <a href="/Product/Index" class="btn btn-danger" style="margin-left: 10px;">
+            İptal
+        </a>
+    </div>
 }
+

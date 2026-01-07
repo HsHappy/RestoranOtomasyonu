@@ -14,8 +14,16 @@
 
         <label>Kategori Adı</label>
         @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(m => m.CategoryName, "", new { @class = "text-danger" })
     </div>
     <br />
 
-    <button class="btn btn-success">Değişiklikleri Kaydet</button>
+    <div class="form-group">
+        <button class="btn btn-success">Değişiklikleri Kaydet</button>
+
+        <a href="/Category/Index" class="btn btn-danger" style="margin-left: 10px;">
+            İptal
+        </a>
+    </div>
 }

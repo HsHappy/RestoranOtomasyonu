@@ -12,7 +12,7 @@ namespace RestoranOtomasyonu.Models
         [Key] // Birincil anahtar
         public int TableId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Masa numarası/adı girilmelidir.")]
         [StringLength(20)]
         public string TableNumber { get; set; }
         public bool IsOccupied { get; set; } // Masa dolu mu boş mu

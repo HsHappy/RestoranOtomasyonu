@@ -18,6 +18,8 @@
     <div class="form-group">
         <label>Kategorisi</label>
         @Html.DropDownListFor(m => m.CategoryId, (List<SelectListItem>)ViewBag.vlc, "Bir Kategori Seçin", new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "text-danger" })
     </div>
     <br />
 
@@ -33,5 +35,11 @@
     </div>
     <br />
 
-    <button class="btn btn-primary">Ürünü Kaydet</button>
+    <div class="form-group">
+        <button class="btn btn-primary">Ürünü Kaydet</button>
+
+        <a href="/Product/Index" class="btn btn-danger" style="margin-left: 10px;">
+            İptal
+        </a>
+    </div>
 }

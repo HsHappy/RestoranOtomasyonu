@@ -32,8 +32,11 @@ namespace RestoranOtomasyonu.Controllers
                 // false: "Beni Hatırla" kapalı (Tarayıcı kapanınca çıkış yapsın).
                 FormsAuthentication.SetAuthCookie(user.Username, false);
 
-                // Giriş başarılıysa Admin paneline (veya Masalara) yönlendir.
-                return RedirectToAction("Index", "Category");
+                Session["Rol"] = user.Role; //Rolü hafızaya attık.
+                Session["Ad"] = user.Name; //Hoşgeldin mesajı için ismi alıyoruz
+
+                // Artık Home (Ana Sayfa) içindeki Index'e gidiyoruz.
+                return RedirectToAction("Index", "Home");
             }
             else
             {

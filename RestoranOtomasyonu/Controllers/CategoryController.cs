@@ -16,7 +16,17 @@ namespace RestoranOtomasyonu.Controllers
 
         RestoranContext db = new RestoranContext();
 
-        // GET: Category
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            
+            if (Session["Rol"] == null || Session["Rol"].ToString() != "A")
+            {
+                filterContext.Result = RedirectToAction("Index", "Home");
+            }
+            base.OnActionExecuting(filterContext);
+        }
+
+
         // Kullanıcı "/Category/Index" adresine gittiğinde bu çalışır.
         public ActionResult Index()
         {
@@ -40,6 +50,11 @@ namespace RestoranOtomasyonu.Controllers
         [HttpPost]
         public ActionResult Create(Category p)
         {
+            if (!ModelState.IsValid) //Kurala uyuldu mu?
+            {
+                return View(p); //Uyulmamışsa sayfayı hatalar ile geri aç.
+            }
+
             //Formdan gelen 'p' nesneisini veritabanı bağlamına ekle.
             db.Categories.Add(p);
 
@@ -76,6 +91,11 @@ namespace RestoranOtomasyonu.Controllers
         [HttpPost]
         public ActionResult Update(Category p)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(p);
+            }
+
             var value = db.Categories.Find(p.CategoryId); //Eski kaydı bulma
 
             value.CategoryName = p.CategoryName; //Eski kaydın adını değiştirme

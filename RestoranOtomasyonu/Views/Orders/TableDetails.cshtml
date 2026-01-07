@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h2 class="text-center">Masa: @Model.CurrentTable.TableNumber <small>(@Model.CurrentTable.TableId)</small></h2>
+        <h2 class="text-center">@Model.CurrentTable.TableNumber <small>(@Model.CurrentTable.TableId)</small></h2>
         <hr />
     </div>
 </div>
@@ -83,7 +83,7 @@
                     <div class="text-center">
 
                         <a href="/Orders/CloseOrder?tableId=@Model.CurrentTable.TableId" class="btn btn-success btn-lg btn-block">
-                            ✔ ÖDEME AL / KAPAT
+                            ✔ ÖDEME AL
                         </a>
                     </div>
                 }

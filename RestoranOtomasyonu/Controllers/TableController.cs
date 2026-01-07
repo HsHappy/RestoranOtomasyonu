@@ -11,7 +11,17 @@ namespace RestoranOtomasyonu.Controllers
     public class TableController : Controller
     {
         RestoranContext db = new RestoranContext();
-        
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (Session["Rol"] == null || Session["Rol"].ToString() != "A")
+            {
+                filterContext.Result = RedirectToAction("Index", "Home");
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
         //1. Listeleme
         public ActionResult Index()
         {
@@ -30,6 +40,11 @@ namespace RestoranOtomasyonu.Controllers
         [HttpPost]
         public ActionResult Create(Table p)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(p);
+            }
+
             p.IsOccupied = false;
             db.Tables.Add(p);
             db.SaveChanges();
@@ -58,6 +73,11 @@ namespace RestoranOtomasyonu.Controllers
         [HttpPost]
         public ActionResult Update(Table p)
         {
+            if(!ModelState.IsValid)
+            {
+                return View(p);
+            }
+
             var value = db.Tables.Find(p.TableId);
             value.TableNumber = p.TableNumber;
 

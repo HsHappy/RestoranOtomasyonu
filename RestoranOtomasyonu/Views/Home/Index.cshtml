@@ -1,33 +1,96 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@{ 
+    ViewBag.Title = "Ana Menü";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    // Session boşsa (hata olmasın diye) varsayılan değer atayalım
+    string rol = Session["Rol"] != null ? Session["Rol"].ToString() : "";
+    string ad = Session["Ad"] != null ? Session["Ad"].ToString() : "Kullanıcı";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<style>
+    /* Butonların içindeki yazıları ve boyutu ayarlayan stil */
+    .dashboard-btn {
+        height: 150px;              /* Kutunun yüksekliği */
+        font-size: 24px;            /* Yazı boyutu */
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;     /* İçindekileri alt alta dizer (İkon üstte, yazı altta) */
+        align-items: center;        /* Dikey ortalama */
+        justify-content: center;    /* Yatay ortalama */
+        text-align: center;         /* Metni ortalar*/
+        margin-bottom: 20px;        /* Alt boşluk */
+        color: white !important;    /* Yazı rengi hep beyaz olsun */
+        border-radius: 10px;        /* Kenarları yuvarlat */
+        text-decoration: none !important; /* Altı çizili olmasın */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Hafif gölge */
+        transition: transform 0.2s; /* Tıklayınca hareket efekti */
+    }
+
+    .dashboard-btn:hover{
+        transform: scale(1.05); /*Mouse üzerine gelince hafif büyüme*/
+        color: white;
+    }
+
+    .garson-btn {
+        height: 200px !important;
+        font-size: 30px !important;
+    }
+
+    /*Renk Sınıfları*/
+    .bg-blue { background-color: #3498db; }
+    .bg-green { background-color: #2ecc71; }
+    .bg-orange { background-color: #e67e22; }
+    .bg-red { background-color: #e74c3c; }
+    .bg-purple { background-color: #9b59b6; }
+</style>
+
+<div class="row" style="margin-top: 50px;">
+
+    <div class="col-md-12 text-center">
+        @if (rol == "A")
+        {
+            <h2>Restoran Yönetim Paneli</h2>
+            <p class="text-muted">Hoşgeldin, <b>@ad</b>👋</p>
+        }
+        else
+        {
+            <h2 style="margin-bottom: 5px;">Personel Paneli</h2>
+            <p class="text-muted">Hoşgeldin, <b>@ad</b> 👋</p>
+        }
+
+        <hr />
+    </div>
+</div>
+
+@if (rol == "A")
+{
+    <div class="row">
+        <div class="col-md-4"><a href="/Orders/Index" class="dashboard-btn bg-green">🍽️ SİPARİŞ EKRANI</a></div>
+        <div class="col-md-4"><a href="/Table/Index" class="dashboard-btn bg-blue">🪑 MASA TANIMLAMA</a></div>
+        <div class="col-md-4"><a href="/Category/Index" class="dashboard-btn bg-orange">📂 KATEGORİLER</a></div>
+    </div>
 
     <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
+        <div class="col-md-4"><a href="/Product/Index" class="dashboard-btn bg-purple">🍔 ÜRÜNLER / MENÜ</a></div>
+        <div class="col-md-4"><a href="/Account/LogOut" class="dashboard-btn bg-red">🚪 ÇIKIŞ YAP</a></div>
+        <div class="col-md-4">
+            <div class="dashboard-btn" style="background-color: #95a5a6; cursor: default;">🚧 Raporlar (Yakında)</div>
+        </div>
     </div>
-</main>
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/Orders/Index" class="dashboard-btn bg-green garson-btn">
+                🍽️ <br /> SİPARİŞ AL
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="/Account/LogOut" class="dashboard-btn bg-red garson-btn">
+                🚪 <br /> GÜVENLİ ÇIKIŞ
+            </a>
+        </div>
+    </div>
+}

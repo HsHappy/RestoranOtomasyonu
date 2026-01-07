@@ -21,6 +21,7 @@ namespace RestoranOtomasyonu.Models
         public bool IsActive { get; set; } //Ürün menüde aktif mi değil mi
 
         // İlişki: Bir ürünün bir kategorisi olur.
+        [Required(ErrorMessage = "Lütfen bir kategori seçiniz!")]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
     }

@@ -4,8 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Ürün Listesi</h2>
-<br />
+<a href="/Home/Index" class="btn btn-default btn-lg" style="margin-bottom: 20px;">
+    🔙 Ana Menü
+</a>
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+    
+    <h2 style="margin: 0;">Ürün Listesi</h2>
+
+    <a href="/Product/Create" class="btn btn-primary">
+        <span class="glyphicon glyphicon-plus"></span> Yeni Ürün Ekle
+    </a>
+</div>
+
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -56,4 +67,3 @@
     </tbody>
 </table>
 
-<a href="/Product/Create" class="btn btn-primary">Yeni Ürün Ekle</a>

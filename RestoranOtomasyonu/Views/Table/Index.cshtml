@@ -4,8 +4,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Masa Listesi</h2>
-<br />
+<a href="/Home/Index" class="btn btn-default btn-lg" style="margin-bottom: 20px;">
+    🔙 Ana Menü
+</a>
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+
+    <h2 style="margin: 0;">Masa Listesi</h2>
+
+    <a href="/Table/Create" class="btn btn-primary">
+        <span class="glyphicon glyphicon-plus"></span> Yeni Masa Tanımla
+    </a>
+
+</div>
 
 <table class="table table-bordered">
     <thead>
@@ -43,4 +54,4 @@
     </tbody>
 </table>
 
-<a href="/Table/Create" class="btn btn-primary">Yeni Masa Tanımla</a>
+

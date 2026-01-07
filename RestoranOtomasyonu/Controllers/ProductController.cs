@@ -12,6 +12,18 @@ namespace RestoranOtomasyonu.Controllers
     {
         RestoranContext db = new RestoranContext();
 
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            //Eğer giren kişinin rolü "A"(Admin) değilse...
+            if (Session["Rol"] == null || Session["Rol"].ToString() != "A")
+            {
+                //Onu nazikçe Ana Sayfaya (veya Login'e) şutlayacağız.
+                filterContext.Result = RedirectToAction("Index", "Home");
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
         // GET: Product
         public ActionResult Index()
         {
@@ -41,10 +53,28 @@ namespace RestoranOtomasyonu.Controllers
         [HttpPost]
         public ActionResult Create(Product p)
         {
-            p.IsActive = true; // Yeni eklenen ürün varsayılan olarak aktif olsun.
-            db.Products.Add(p);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            // 1. Kategori seçili mi, isim yazılı mı?
+            if (ModelState.IsValid)
+            {
+                p.IsActive = true; // Yeni eklenen ürün varsayılan olarak aktif olsun.
+                db.Products.Add(p);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            // 2. HATA VARSA BURAYA DÜŞ!
+            // Dropdown listesini tekrar doldurmamız lazım, yoksa görünüm hata verir.
+            // (Aşağıdaki kod Create(GET) metodundaki kodun aynısı olmalı)
+            List<SelectListItem> degerler = (from i in db.Categories.ToList()
+                                             select new SelectListItem()
+                                             {
+                                                 Text = i.CategoryName,
+                                                 Value = i.CategoryId.ToString()
+                                             }).ToList();
+
+            ViewBag.vlc = degerler;
+
+            return View();
         }
 
         public ActionResult Delete(int id)
