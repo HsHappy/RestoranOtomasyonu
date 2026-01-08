@@ -43,7 +43,7 @@ namespace RestoranOtomasyonu.Controllers
 
             return View(model);
         }
-        // Veya [HttpGet] kullanabiliriz ama işlem yaptığı için Post daha güvenlidir, şimdilik link vereceğimiz için Get/Post ayrımını esnetiyoruz.
+        
         //Link ile çalışacağımız için direkt ActionResult yazalım.
         [HttpGet]
         public ActionResult AddProduct(int productId, int tableId)
@@ -105,6 +105,16 @@ namespace RestoranOtomasyonu.Controllers
 
             db.SaveChanges();
 
+            //Sipariş Loglama
+            ActionLog log = new ActionLog();
+            log.PersonelName = Session["Ad"].ToString();
+            log.ActionType = "Sipariş";
+            log.Date = DateTime.Now;
+            log.Description = "Masa " + tableId + " için yeni sipariş oluşturuldu.";
+
+            db.ActionLogs.Add(log);
+            db.SaveChanges();
+
             return RedirectToAction("TableDetails", new { id = tableId });
         }
 
@@ -126,6 +136,17 @@ namespace RestoranOtomasyonu.Controllers
 
                 db.SaveChanges();
             }
+
+            //Hesap loglama
+            ActionLog log = new ActionLog();
+            log.PersonelName = Session["Ad"].ToString();
+            log.ActionType = "Hesap Ödeme";
+            log.Date = DateTime.Now;
+            log.Description = tableId + " numaralı masa hesabı alındı ve kapatıldı.";
+
+            db.ActionLogs.Add(log);
+            db.SaveChanges();
+
             return RedirectToAction("Index");
         }
     }

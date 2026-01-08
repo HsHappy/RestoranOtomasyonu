@@ -1,0 +1,59 @@
+﻿@model List<RestoranOtomasyonu.Models.ActionLog>
+
+@{
+    ViewBag.Title = "Hareket Kayıtları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <br />
+    <a href="/Home/Index" class="btn btn-default">
+        <span class="glyphicon glyphicon-arrow-left"></span>🔙 Ana Menü
+    </a>
+
+    <h2 class="text-center">📋 Personel İşlem Geçmişi</h2>
+    <hr />
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead style="background-color: #34495e; color: white;">
+            <tr>
+                <th>Tarih / Saat</th>
+                <th>Personel</th>
+                <th>İşlem Türü</th>
+                <th>Açıklama</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var log in Model)
+            {
+                <tr>
+                    <td>@log.Date.ToString("dd.MM.yyyy HH:mm")</td>
+
+                    <td>
+                        <span class="label label-info" style="font-size: 15px;">@log.PersonelName</span>
+                    </td>
+
+                    <td>
+                        @if (log.ActionType == "Hesap Ödeme")
+                        {
+                            <b class="text-success">💰 @log.ActionType</b>
+                        }
+                        else
+                        {
+                            <b class="text-primary">📝 @log.ActionType</b>
+                        }
+                    </td>
+
+                    <td>@log.Description</td>
+                </tr>
+            }
+
+            @if (Model.Count == 0)
+            {
+                <tr>
+                    <td colspan="4" class="text-center text-muted">Henüz kayıtlı bir işlem yok.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

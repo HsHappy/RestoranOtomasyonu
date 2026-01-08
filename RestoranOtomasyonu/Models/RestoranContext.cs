@@ -20,6 +20,7 @@ namespace RestoranOtomasyonu.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Personel> Personels { get; set; }
+        public DbSet<ActionLog> ActionLogs { get; set; }
 
     }
 }

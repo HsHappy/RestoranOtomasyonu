@@ -130,6 +130,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\TableController.cs" />
@@ -144,7 +145,12 @@
     <Compile Include="Migrations\202601061823229_FiyatSutunuDegisti.Designer.cs">
       <DependentUpon>202601061823229_FiyatSutunuDegisti.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202601081232275_ActionLog-Eklendi.cs" />
+    <Compile Include="Migrations\202601081232275_ActionLog-Eklendi.Designer.cs">
+      <DependentUpon>202601081232275_ActionLog-Eklendi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ActionLog.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
@@ -218,6 +224,7 @@
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Orders\TableDetails.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Log\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -256,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202601061823229_FiyatSutunuDegisti.resx">
       <DependentUpon>202601061823229_FiyatSutunuDegisti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202601081232275_ActionLog-Eklendi.resx">
+      <DependentUpon>202601081232275_ActionLog-Eklendi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
