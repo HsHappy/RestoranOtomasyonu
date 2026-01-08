@@ -16,7 +16,7 @@ namespace RestoranOtomasyonu.Models
         public string CategoryName { get; set; }
 
         // İlişki: Bir kategoride birden fazla ürün olabilir.
-        // List yerine ICollection kullanmak Entity Framework standartıdır.
+        // List yerine ICollection kullanmak Entity Framework standardı
         public virtual ICollection<Product> Products { get; set; }
     }
 }

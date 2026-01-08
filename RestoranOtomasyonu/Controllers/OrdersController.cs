@@ -44,7 +44,6 @@ namespace RestoranOtomasyonu.Controllers
             return View(model);
         }
         
-        //Link ile çalışacağımız için direkt ActionResult yazalım.
         [HttpGet]
         public ActionResult AddProduct(int productId, int tableId)
         {

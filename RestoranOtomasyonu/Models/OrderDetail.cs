@@ -13,11 +13,11 @@ namespace RestoranOtomasyonu.Models
         public int Quantity { get; set; } // Ürün adedi
         public decimal Price { get; set; } // Birim fiyat
 
-        // İlişki: Hangi siparişe ait?
+        //Hangi siparişe ait?
         public int OrderId { get; set; }
         public virtual Order Order { get; set; }
 
-        // İlişki: Hangi ürün satıldı?
+        //Hangi ürün satıldı?
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
     }

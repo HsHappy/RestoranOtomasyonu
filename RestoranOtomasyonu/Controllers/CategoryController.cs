@@ -36,7 +36,7 @@ namespace RestoranOtomasyonu.Controllers
             return View(values);
         }
 
-        // 1. GET: Sayfayı göster
+        
         //Kullanıcı linke tıkladığında sadece formu göster.
         [HttpGet]
         public ActionResult Create()
@@ -44,7 +44,7 @@ namespace RestoranOtomasyonu.Controllers
             return View();
         }
 
-        // 2. POST: Veriyi kaydeder
+        //Veriyi kaydeder
         //Butona basıldığında bura çalışır.
         //Parametre olarak (Category p) alır, yani formdaki 'p' değişkenine dolar.
         [HttpPost]

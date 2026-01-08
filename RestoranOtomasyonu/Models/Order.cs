@@ -14,11 +14,11 @@ namespace RestoranOtomasyonu.Models
         public decimal TotalAmount { get; set; } // Toplam tutar
         public bool IsPaid { get; set; } // Ödeme alındı mı? 
 
-        // İlişki: Hangi masanın siparişi olduğu
+        //Hangi masanın siparişi olduğu
         public int TableId { get; set; }
         public virtual Table Table { get; set; }
 
-        // İlişki: Bir siparişin içinde bir sürü yemek olabilir (Detaylar)
+        //Bir siparişin içinde bir sürü yemek olabilir (Detaylar)
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
     }

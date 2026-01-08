@@ -17,6 +17,6 @@ namespace RestoranOtomasyonu.Models
         public string TableNumber { get; set; }
         public bool IsOccupied { get; set; } // Masa dolu mu boş mu
 
-        // İleride bu masadaki aktif siparişi bulmak için eklemeler yapabiliriz.
+        
     }
 }

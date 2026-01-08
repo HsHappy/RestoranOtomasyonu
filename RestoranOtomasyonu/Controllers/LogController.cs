@@ -23,7 +23,7 @@ namespace RestoranOtomasyonu.Controllers
 
         public ActionResult Index()
         {
-            // Kayıtları tarihe göre tersten sırala (En son yapılan işlem en üstte)
+            // Kayıtları tarihe göre tersten sıralama (En son yapılan işlem en üstte)
             var logs = db.ActionLogs.OrderByDescending(x => x.Date).ToList();
             return View(logs);
         }

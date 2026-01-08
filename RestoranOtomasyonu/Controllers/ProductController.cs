@@ -14,7 +14,7 @@ namespace RestoranOtomasyonu.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //Eğer giren kişinin rolü "A"(Admin) değilse...
+            //Eğer giren kişinin rolü "A"(Admin) değilse
             if (Session["Rol"] == null || Session["Rol"].ToString() != "A")
             {
                 //Onu nazikçe Ana Sayfaya (veya Login'e) şutlayacağız.
@@ -24,7 +24,7 @@ namespace RestoranOtomasyonu.Controllers
             base.OnActionExecuting(filterContext);
         }
 
-        // GET: Product
+
         public ActionResult Index()
         {
             var values = db.Products.Include("Category").ToList(); //Ürünleri getirirken, kendi kategori tablosu ile beraber getir.
@@ -44,8 +44,8 @@ namespace RestoranOtomasyonu.Controllers
                                                    Value = x.CategoryId.ToString()
                                                }).ToList();
 
-            // 2. Bu listeyi ViewBag çantasına koyuyoruz.
-            // ViewBag: Controller'dan View'a veri taşıyan dinamik bir yapıdır.
+            //2. Bu listeyi ViewBag çantasına koyuyoruz.
+            //ViewBag: Controller'dan View'a veri taşıyan dinamik bir yapıdır.
             ViewBag.vlc = categories;
             return View();
         }
@@ -53,18 +53,18 @@ namespace RestoranOtomasyonu.Controllers
         [HttpPost]
         public ActionResult Create(Product p)
         {
-            // 1. Kategori seçili mi, isim yazılı mı?
+            //Kategori seçili mi, isim yazılı mı?
             if (ModelState.IsValid)
             {
-                p.IsActive = true; // Yeni eklenen ürün varsayılan olarak aktif olsun.
+                p.IsActive = true; //Yeni eklenen ürün varsayılan olarak aktif olsun.
                 db.Products.Add(p);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            // 2. HATA VARSA BURAYA DÜŞ!
-            // Dropdown listesini tekrar doldurmamız lazım, yoksa görünüm hata verir.
-            // (Aşağıdaki kod Create(GET) metodundaki kodun aynısı olmalı)
+            //HATA VARSA BURAYA DÜŞ!
+            //Dropdown listesini tekrar doldurmamız lazım, yoksa görünüm hata verir.
+            //(Aşağıdaki kod Create(GET) metodundaki kodun aynısı olmalı)
             List<SelectListItem> degerler = (from i in db.Categories.ToList()
                                              select new SelectListItem()
                                              {
