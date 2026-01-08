@@ -43,7 +43,7 @@ git clone https://github.com/KULLANICI_ADINIZ/REPO_ADINIZ.git
 Proje **Entity Framework Code First** kullandığı için veritabanını otomatik oluşturacaktır.
 
 1. Projeyi (`.sln` dosyası) Visual Studio ile açın.
-2. **Web.config** dosyasını açın ve `connectionStrings` kısmındaki Server adının kendi bilgisayarınızla uyumlu olduğundan emin olun (Genelde `(localdb)\MSSQLLocalDB` veya `.\SQLEXPRESS` olur).
+2. **Web.config** dosyasını açın ve `connectionStrings` kısmındaki Server adının kendi bilgisayarınızla uyumlu olduğundan emin olun (Genelde `localhost`, `(localdb)\MSSQLLocalDB` veya `.\SQLEXPRESS` olur).
 3. Visual Studio'da üst menüden **Tools (Araçlar) > NuGet Package Manager > Package Manager Console** yolunu izleyin.
 4. Açılan konsola şu komutu yazıp Enter'a basın:
 ```powershell
